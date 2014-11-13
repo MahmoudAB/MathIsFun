@@ -32,7 +32,7 @@ function validate_form() {
 	if ($warning !== "") {
         echo $warning;
     } else {
-        $file = '../db/users.txt';
+        $file = '../db/members.txt';
         $users = unserialize(file_get_contents($file));
         if (!is_array($users))
             $users = [];
@@ -42,7 +42,16 @@ function validate_form() {
             'fname' => $_POST['fname'],
             'lname' => $_POST['lname'],
             'phone' => $_POST['phone'],
-            'email' => $_POST['email']);
+            'email' => $_POST['email'],
+            'additionTotal' => 0,
+            'substractionTotal' => 0,
+            'multiplicationTotal' => 0,
+            'additionScore' => 0,
+            'substractionScore' => 0,
+            'multiplicationScore' => 0,
+            'operationTotal' => 0,
+            'scoreTotal' => 0
+            );
         file_put_contents($file, serialize($users));
 		header('Location: login.php?');
     }
