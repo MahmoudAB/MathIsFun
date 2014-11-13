@@ -1,0 +1,1 @@
+<?php include 'security.php'; ?><!DOCTYPE html><html lang = "en"><head>   <link rel="stylesheet" href="css/A3_1.css"></head><body>  <?php include 'header.php';?>  <?php include 'menu.php'; ?>  <section id="contact">    <h1>My Statistics</h1>    <p>        <img src="images/underConstruction.gif">    </p></section><?php include 'footer.php';?></body></html>
