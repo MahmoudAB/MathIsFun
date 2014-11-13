@@ -37,11 +37,8 @@ function generateNum(op) {
 	}
 
 	//make sure the first operand is bigger than the second in subtraction
-	if(currentOp == "-" && operand1 < operand2) {
-	var temp = operand1;
-	operand1 = operand2;
-	operand1 = temp;
-	}
+	while(currentOp == "sub" && operand1 < operand2)
+	operand1 = Math.floor((Math.random() * maxNum));
 
 	//evaluate the expression
 	var opSymbol;
@@ -80,13 +77,8 @@ function check() {
 		return;
 	}
 	++count;   // increment number of tries
-	// var formName = document.getElementById("myForm").name;
+
 	var myInput = document.getElementById("calculation").value;
-	var isCorrect = (result == myInput);
- 	var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST","updateStats.php", true);
-    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xmlhttp.send("op=" + currentOp + "&correct=" + isCorrect);
 
 	switch(currentOp){
 	case "add":
@@ -120,6 +112,10 @@ function display(tempScore, input) {
 		count = 0;
 		document.getElementById("count").value = count;
 		generateNum(originalOp);
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("POST","updateStats.php", true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("op=" + currentOp + "&correct=" + true);
 	}
 	else if (count < 3){
 		alert("Error! This is the "+count+" time you try!");
@@ -131,6 +127,10 @@ function display(tempScore, input) {
 		count = 0;
 		document.getElementById("count").value = count;
 		generateNum(originalOp);
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("POST","updateStats.php", true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("op=" + currentOp + "&correct=" + false);
 	}
 	return tempScore;
 }
