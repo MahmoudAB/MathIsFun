@@ -32,11 +32,18 @@ function validate_form() {
 	if ($warning !== "") {
         echo $warning;
     } else {
-       $f = "../db/users.txt";
-		$fh = fopen($f, 'a') or die();
-		$s = $_POST['loginName'].",".$_POST['passwrd'].",".$_POST['fname'].",".$_POST['lname'].",".$_POST['phone'].",".$_POST['email']."\n\n";
-		fwrite($fh, $s);
-		fclose($fh);
+        $file = '../db/users.txt';
+        $users = unserialize(file_get_contents($file));
+        if (!is_array($users))
+            $users = [];
+
+        $users[$_POST['loginName']] = array(
+            'passwrd' => $_POST['passwrd1'],
+            'fname' => $_POST['fname'],
+            'lname' => $_POST['lname'],
+            'phone' => $_POST['phone'],
+            'email' => $_POST['email']);
+        file_put_contents($file, serialize($users));
 		header('Location: login.php?');
     }
 }
