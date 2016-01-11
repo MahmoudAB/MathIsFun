@@ -1,1 +1,1 @@
-<header> <h1>Welcome to Arithmetix-R-U</h1></header>
+<header> <h1>MathIsFun</h1></header>

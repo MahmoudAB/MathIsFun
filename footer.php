@@ -1,3 +1,3 @@
   <footer>
-    &copy;2014, Nancy Acemian
+    &copy;2014, Mahmoud Abdel Basset
   </footer>
